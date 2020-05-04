@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int findComplement(int num) {
+        int ans=0;
+        long base=1;
+        while(num>0)
+        {
+            int x=num%2;
+            num=num/2;
+            ans=ans+(int)((x^1)*base);
+            base=2*base;
+        }
+        return ans;
+    }
+};
