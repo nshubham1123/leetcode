@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int numJewelsInStones(string J, string S) {
+        unordered_map<char,int> map;
+        int count=0;
+        for(char c : J){
+            map.insert({c,1});
+        }
+        for(char c : S){
+            if(map.find(c)!=map.end())
+                count++;
+        }
+        return count;
+    }
+};
