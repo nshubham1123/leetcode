@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int findJudge(int N, vector<vector<int>>& trust) {
+        vector<int> v1(N+1,0);
+        vector<int> v2(N+1,0);
+        for(vector<int> v:trust )
+        {
+            v1[v[0]]++;
+            v2[v[1]]++;
+        }
+        int jd;
+        int oth=0;
+        for(int i=1;i<=N;i++)
+        {
+            if(v1[i]==0)
+                jd=i;
+            else
+                oth++;
+        }
+        if(oth!=N-1)
+            return -1;
+        if(v2[jd]!=N-1)
+            return -1;
+        return jd;
+    }
+};
