@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int old_value=image[sr][sc];
+        if(old_value==newColor)
+            return image;
+        image[sr][sc]=newColor;
+        
+        if(sr-1>=0 && image[sr-1][sc]==old_value)
+            image=floodFill(image,sr-1,sc,newColor);
+        
+        if(sc-1>=0 && image[sr][sc-1]==old_value)
+            image=floodFill(image,sr,sc-1,newColor);
+        
+        if(sr+1<image.size() && image[sr+1][sc]==old_value)
+            image=floodFill(image,sr+1,sc,newColor);
+        
+        if(sc+1<image[0].size() && image[sr][sc+1]==old_value)
+            image=floodFill(image,sr,sc+1,newColor);
+        
+        
+        return image;
+    }
+};
