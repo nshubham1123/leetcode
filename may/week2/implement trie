@@ -1,0 +1,63 @@
+class Trie {
+public:
+    /** Initialize your data structure here. */
+    Trie* child[26];
+    bool leaf;
+    Trie() {
+        for(int i=0;i<26;i++)
+            child[i]=NULL;
+        leaf=false;
+    }
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        Trie* ptr=this;
+        for(char c:word)
+        {
+            if(ptr->child[c-'a']==NULL)
+            {
+                Trie* node=new Trie();
+                ptr->child[c-'a']=node;
+            }
+            ptr=ptr->child[c-'a'];
+        }
+        ptr->leaf=true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        Trie* ptr=this;
+        for(char c:word)
+        {
+            if(ptr->child[c-'a']==NULL)
+                return false;
+            ptr=ptr->child[c-'a'];
+        }
+        if(ptr->leaf==true)
+            return true;
+        return false;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        Trie* ptr=this;
+        for(char c:prefix)
+        {
+            if(ptr->child[c-'a']==NULL)
+                return false;
+            ptr=ptr->child[c-'a'];
+        }
+        return true;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
